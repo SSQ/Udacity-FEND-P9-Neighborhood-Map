@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Map</title>
+    <style>
+      html,
+      body {
+        font-family: Arial, sans-serif;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        display: block;
+        box-sizing: border-box;
+      }
+
+      h1 {
+        color: #525454;
+        font-size: 22px;
+        margin: 0 0 10px 0;
+        text-align: center;
+      }
+
+      #map {
+        bottom:0px;
+        top: 100px;
+        left: 0;  
+        position: absolute;
+        right: 0px;
+      }
+
+      .searchbox {
+
+        width: 362px;
+        display: flex;
+        height: 104px;
+      }
+
+      #menu {
+        width: 100px;
+        font-size: 80px;
+      }
+
+      input {
+        top: 0;
+        height: 100px;
+        left: 260px;
+        right: 0;
+        font-size: 50px;
+      }
+
+      .listbox {
+        top: 104px;
+        width: 362px;
+        left: 0;
+      }
+
+      li {
+        height: 50px;
+        text-align: left;
+        font-size: 20px;
+      }
+
+  .nav.open {
+    transform: translate(0,0);
+  }
+  .nav {
+    z-index: 10;
+    width: 300px;
+    position: absolute;
+    background-color: white;
+    /*-webkit-transform:translate(-300px,0);*/
+    transform: translate(-800px,0);
+    transition: transform 0.3s ease;
+  }
+
+@media screen and (min-width:800px) {
+  .nav {
+    z-index: 10;
+    width: 300px;
+    position: absolute;
+    background-color: white;
+    /*-webkit-transform:translate(-300px,0);*/
+    transform: translate(0,0);
+    transition: transform 0.3s ease;
+  }
+}
+
+
+    </style>
+  </head>
+  <body>
+
+      <div class="searchbox">
+        <a id="menu">☰</a><input placeholder="search" data-bind="textInput: filter" />
+      </div>
+      <div class="listbox nav">
+        <ul data-bind="foreach: locationlist">
+          <li data-bind="text: title, click: $parent.setmarker"></li>
+        </ul>
+      </div>
+      <div id="map"></div>
+
+    <script src="js/libs/knockout-3.2.0.js"></script>
+    <script src="js/libs/jquery.min.js"></script>
+    <script src="js/app.js"></script>
+    <script async defer onerror="googleError()"
+        src=
+        "https://maps.googleapis.com/maps/api/js?key=AIzaSyBlaVKbCh1F8vu0ha43NMV6Zn6bYplvdps&v=3&callback=initMap">
+    </script>
+
+  </body>
+</html>
